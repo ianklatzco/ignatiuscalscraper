@@ -11,12 +11,13 @@ class IgnCalSpider(Spider):
 	def parse(self, response):
 		hxs = HtmlXPathSelector(response)
 		titles = hxs.select("//span[@class='BodyText']")
-								# I think this is right.
+		# I think this is right. I believe it selects all attributes with a class that = BodyText.
 		items = []
 		for titles in titles:
 			item = CraigslistSampleItem()
 			item ["title"] = titles.select("a/td()").extract()
 			# I'm not sure what to select here^^^
+			# What's the a? What's the td()?
 			items.append(item)
 		return items
 
